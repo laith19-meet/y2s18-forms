@@ -10,11 +10,16 @@ def home():
 def display_student(student_id):
     return render_template('student.html', student=query_by_id(student_id))
 
-@app.route('/add', methods=["get","post"])
+@app.route('/add', methods=["GET","POST"])
 def add_student_route ():
-	if request.method== "get":
-		return render_template("add.html")
-	else :
-		session.add(add_student_route)
-		session.commit()
+    if request.method== "GET":
+        return render_template("add.html")
+    else :
+        name = request.form['first_name']
+        year = request.form['year']
+
+        add_student("name" , "year", True)        
+        return render_template('student.html',
+            n = name,
+            s = year)
 app.run(debug=True)
