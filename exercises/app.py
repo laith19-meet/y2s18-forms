@@ -1,5 +1,5 @@
 from databases import *
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template, url_for, request
 app = Flask(__name__)
 
 @app.route('/')
@@ -10,11 +10,11 @@ def home():
 def display_student(student_id):
     return render_template('student.html', student=query_by_id(student_id))
 
-@app.route('/add', methods==["get","post"])
+@app.route('/add', methods=["get","post"])
 def add_student_route ():
-	return render_template('add.html')
-	if request.methods== "get":
+	if request.method== "get":
 		return render_template("add.html")
 	else :
-		return "you have just made a post request"
+		session.add(add_student_route)
+		session.commit()
 app.run(debug=True)
